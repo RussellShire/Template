@@ -1,4 +1,5 @@
 import Model from '../mvc/model.js'
+import { add, getData } from '../mvc/model.js'
 
 describe("model", () => {
     const model = new Model()
@@ -7,7 +8,12 @@ describe("model", () => {
         expect(model.hello()).toBe("Hello, I am the model")
     })
 
-    it("says hello fail example", () => {
-        expect(model.hello()).toBe("Yo") // how uncouth
+    it("adds two numbers", () => {
+        expect(add(2,2)).toBe(4)
+    })
+
+    it("gets 1", async () => {
+        const data = await getData()
+        expect(data).toBe(1)
     })
 })

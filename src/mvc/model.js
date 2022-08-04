@@ -3,3 +3,11 @@ export default class Model {
         return "Hello, I am the model"
     }
 }
+
+export function add(x, y) {
+    return x + y
+}
+
+export async function getData() {
+    return await 1
+}
