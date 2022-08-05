@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 export default class ToDoList {
     constructor () {
-        this.uuidToTask = new Map() // Basically a Python dictionary
+        this.taskList = new Map() // Basically a Python dictionary
     }
     hello() {
         return "Hello, I am the model"
@@ -16,12 +16,14 @@ export default class ToDoList {
         // create a task, with description, add created time and completed bool
         // Take a description, create a new task, add to Map
         const newTask = this.createNewTask(description); // Creating a new task and assigning to local variable
-        this.uuidToTask.set(newTask.uuid, newTask); // Setting a map element using uuid from NewTask as key value and whole NewTask object as value
-        return newTask; // QUESTION FOR GRAHAM, I think I've made this function do two things now for the sake of testing?
+        this.taskList.set(newTask.uuid, newTask); // Setting a map element using uuid from NewTask as key value and whole NewTask object as value
+        // QUESTION FOR GRAHAM, by adding return I think I've made this function do two things now for the sake of testing? Update Map and return
+        return newTask; 
     }
-    async markTaskAsCompleted() {
+    async markTaskAsCompleted(uuid) {
         // edit task so it is completed
         // Take the uuid of the task from the Map, pull out of map, set is completed as true, put back into the Map
+        this.taskList.get(uuid).isCompleted = true
     }
     async removeAllTasks() {
         // clears the list of tasks

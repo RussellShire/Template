@@ -31,9 +31,9 @@ describe("model", () => {
 
     it("should increase Map size when adding new task", async () => {
         const description = 'test description'
-        const taskCounterBefore = model.uuidToTask.size
+        const taskCounterBefore = model.taskList.size
         await model.addNewTask(description)
-        const taskCounterAfter = model.uuidToTask.size
+        const taskCounterAfter = model.taskList.size
         
         expect(taskCounterAfter).toEqual(taskCounterBefore+1)
     })
@@ -42,7 +42,13 @@ describe("model", () => {
         const description = 'new test description'
         const newTask = await model.addNewTask(description)
         //console.log('Key log', newTask.uuid)  
-        //console.log('map log', model.uuidToTask.get(newTask.uuid).description)     
-        expect(model.uuidToTask.get(newTask.uuid).description).toBe(description)
+        //console.log('map log', model.taskList.get(newTask.uuid).description)     
+        expect(model.taskList.get(newTask.uuid).description).toBe(description)
     })
-})
+
+    it("should change task completed to true", async () => {
+        const newTask = await model.addNewTask('completed test')
+        model.markTaskAsCompleted(newTask.uuid);
+        expect(model.taskList.get(newTask.uuid).isCompleted).toBe(true) 
+    })
+});
