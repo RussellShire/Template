@@ -49,6 +49,27 @@ describe("model", () => {
     it("should change task completed to true", async () => {
         const newTask = await model.addNewTask('completed test')
         model.markTaskAsCompleted(newTask.uuid);
-        expect(model.taskList.get(newTask.uuid).isCompleted).toBe(true) 
+        expect(model.taskList.get(newTask.uuid).isCompleted).toBe(true); 
+    })
+
+    it("should only change the selected task to completed", async () => {
+        const testTargetUnchanged = await model.addNewTask('test1')
+        const testTargetChanged = await model.addNewTask('test2')
+
+        model.markTaskAsCompleted(testTargetChanged.uuid);
+        expect(model.taskList.get(testTargetUnchanged.uuid).isCompleted).toBe(false);
+    })
+
+    /* QUESTION FOR GRAHAM, I'm not sure how to test returning a Map without creating a circular test
+    it("should return all tasks", async () => {
+        const testTargetUnchanged = await model.addNewTask('test1')
+        const testTargetChanged = await model.addNewTask('test2')
+        console.log('get all print', await model.getAllTasks())
+    })*/
+
+    it("should clear the task list", async () => {
+        const testTargetUnchanged = await model.addNewTask('test1')
+        model.removeAllTasks()
+        expect(model.taskList.size).toBe(0)
     })
 });
