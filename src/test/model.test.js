@@ -9,7 +9,7 @@ describe("model", () => {
     
     it("makes a task", () => {
         const model = new Model()
-        
+
         const task = model.createNewTask('test1')
         
         expect(task.description).toBe('test1')
@@ -47,7 +47,7 @@ describe("model", () => {
         expect(tasks.length).toBe(2)
     })
 
-    it("should clear the task list", async () => {
+    it("clears the task list", async () => {
         const model = new Model()
 
         await model.addNewTask('test1')
