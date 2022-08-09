@@ -4,11 +4,11 @@
 - [x] Logically test our definitions by explaining them
 - [x] Use our conceptual definitions to create our model of the domain with psudocode
 - [x] Implement our model (with unit tests)
-- [ ] Define our controller with psudocode
-- [ ] Logically test our defitionions by explaining them
+- [x] Define our controller with psudocode
+- [x] Logically test our defitionions by explaining them
 - [ ] Implement our controller
-- [ ] Define our view with psudocode
-- [ ] Logically test our definitions by explaining them
+- [x] Define our view with psudocode
+- [x] Logically test our definitions by explaining them
 - [ ] Implement our view
 - [ ] Perform user acceptence testing
 - [ ] Perform a retrospective
@@ -32,3 +32,22 @@ Task:
 Has a description
 Has a created time
 Knows if it's completed, Bool
+
+Controller pseudocode:
+
+Takes a description input from the view and tells the model to add a new task, tells the view to render the task list
+
+Takes a uuid from the view and tells the model to mark that uuid as completed, tells the view to re-render the task list
+
+Takes a reset input from the view and tells the model to clear the task list. Tells the view to rerender the task list empty.
+
+View pseudocode:
+
+Has an input box for new tasks, when tasks are added passes the description to the controller.
+
+Renders the decription of each task on the tasklist alongside a button to mark the task as completed.
+Completed tasks are rendered with a strikethrough.
+
+If the button that marks tasks as completed is triggered passes that task's uuid to the controller
+
+Has a reset button that when triggered tells the controller.

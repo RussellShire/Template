@@ -2,6 +2,9 @@ import Model from '../mvc/model.js'
 import { add, getData } from '../mvc/model.js'
 import { v4 as uuidv4 } from 'uuid'
 
+
+//console.log(uuid())
+
 describe("model", () => {
     const model = new Model()
 
@@ -23,7 +26,7 @@ describe("model", () => {
         console.log('make default task', task)
     })
 
-    it("should create uuid when called", () => {
+    it.skip("should create uuid when called", () => {
         const uuid = uuidv4()
         expect(uuid).not.toBeUndefined()
         // console.log(uuid)
