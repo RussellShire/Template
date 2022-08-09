@@ -11,8 +11,9 @@ export default class ToDoList {
     async getAllTasks() {
         // Get all tasks in order of created time
         // Iterate over the values in the Map, put them into a list, order the list by date created, and return
-        return this.taskList.entries() // this gets tasks but does not order them
+        return Array.from(this.taskList.entries()).sort((a, b) => a.createdTime > b.createdTime) // creates an array from map then sorts by createdTime    
     }
+
     async addNewTask(description) {
         // create a task, with description, add created time and completed bool
         // Take a description, create a new task, add to Map
