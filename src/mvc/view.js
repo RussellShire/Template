@@ -2,7 +2,7 @@ export default class View {
     constructor(){
     this.submitButton = document.getElementById('submit')
     this.taskList = document.getElementById('task-list')
-    this.submitButton.onclick = e => {
+    this.submitButton.onclick = e => { // add eventlisteners onto the html rather than into class
         e.preventDefault()
         console.log('test')}
     }
@@ -32,6 +32,8 @@ export default class View {
             const classAttribute = document.createAttribute('class')
             classAttribute.value = 'task'
             newElement.setAttributeNode(classAttribute)
+
+            // add event listener here see form example
             
             document.taskList.appendChild(newElement)
 
