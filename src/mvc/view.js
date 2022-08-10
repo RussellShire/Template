@@ -34,16 +34,19 @@ export default class View {
         Completed tasks are rendered with a strikethrough.*/
         // use create element li
         taskList.forEach(task => {
-            newElement = document.createElement('li')
-            const description = taskList.description
-            newElement.appendChild(document.createTextNode(description))
-
-            const classAttribute = document.createAttribute('class')
-            classAttribute.value = 'task'
-            newElement.setAttributeNode(classAttribute)
-
-            // add event listener here see form example
+            newTask = document.createElement('li')
             
+            const description = task.description
+            newTask.textContent(description)
+
+            newTask.classList.add('task')
+
+            // event listener
+            newTask.addEventListener('click', () => {
+                this.taskCompleted(task.uuid)                 
+            })
+
+
             document.taskList.appendChild(newElement)
 
         }
@@ -56,7 +59,7 @@ export default class View {
     
     }
     
-    taskCompleted(){
+    taskCompleted(uuid){
         // If the button that marks tasks as completed is triggered passes that task's uuid to the controller
     // Event listener that passes the uuid to the controller when dynamically created, 
 }
