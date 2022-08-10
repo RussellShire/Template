@@ -14,15 +14,31 @@ export default class Controller {
         console.log(this.view.hello())
     }
 
-    newTaskRequest() {
-        // Takes a description input from the view and tells the model to add a new task, tells the view to render the task list
+    renderInvocation(){
+        const taskList = this.model.getAllTasks()
+        const controller = this // this = controller, because it's the class we're in
+
+        this.view.render(taskList, controller) 
     }
 
-    taskMarkedAsCompleted() {
-        // Takes a description input from the view and tells the model to add a new task, tells the view to render the task list
-
+    newTaskRequested(description) {
+    // Takes a description input from the view and tells the model to add a new task, tells the view to render the task list
+        this.model.addNewTask(description)
+        
+        this.renderInvocation()
     }
-    resetTaskListRequest() {
+
+    taskMarkedAsCompleted(uuid) {
+        // Takes a uuid from the view and tells the model to mark task as completed
+        this.model.taskMarkedAsCompleted(uuid)
+        
+        this.renderInvocation()
+    }
+
+    clearListRequested() {
         //Takes a reset input from the view and tells the model to clear the task list. Tells the view to rerender the task list empty.
+        this.model.removeAllTasks()
+
+        this.view.renderInvocation()
     }
 }

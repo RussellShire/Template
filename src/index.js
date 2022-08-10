@@ -8,6 +8,11 @@ function main() {
     const c = new Controller(m, v)
 
     c.sayHelloFromEveryone() // prove to ourselves the wiring all works
+    // testing
+
+    m.addNewTask('test1')
+    v.render(m.taskList, c)
+
 }
 
 main()

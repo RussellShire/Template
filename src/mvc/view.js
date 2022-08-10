@@ -1,10 +1,20 @@
 export default class View {
     constructor(){
+    // DOM elements
     this.submitButton = document.getElementById('submit')
     this.taskList = document.getElementById('task-list')
+    this.taskInput = document.getElementById('new-task')
+    
+    // Event listeners
     this.submitButton.onclick = e => { // add eventlisteners onto the html rather than into class
         e.preventDefault()
-        console.log('test')}
+        
+        const input = this.taskInput.value
+        
+        this.taskInput.value = ''
+        
+        //this.controller.newTaskRequested(input)
+        }
     }
  
 
@@ -18,7 +28,6 @@ export default class View {
 
 
     }
-
 
     render(taskList, controller){
         /*Renders the description of each task on the tasklist alongside a button to mark the task as completed.

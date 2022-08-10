@@ -1,9 +1,5 @@
 import Model from '../mvc/model.js'
-import { add, getData } from '../mvc/model.js'
 import { v4 as uuidv4 } from 'uuid'
-
-
-//console.log(uuid())
 
 describe("model", () => {
     
