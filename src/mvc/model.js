@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 export default class ToDoList {
     constructor () {
-        this.taskList = new Map() // Basically a Python dictionary
+        this.uuidToTask = new Map() // Basically a Python dictionary
     }
 
     hello() {
@@ -15,7 +15,7 @@ export default class ToDoList {
         // Iterate over the values in the Map, put them into a list, order the list by date created, and return
 
         // THIS NEEDS TESTING
-        return Array.from(this.taskList.entries()).sort((a, b) => a.createdTime > b.createdTime) // creates an array from map then sorts by createdTime    
+        return Array.from(this.uuidToTask.entries()).sort((a, b) => a.createdTime > b.createdTime) // creates an array from map then sorts by createdTime    
     }
 
     async addNewTask(description) {
@@ -23,7 +23,7 @@ export default class ToDoList {
         // Take a description, create a new task, add to Map
         const newTask = this.createNewTask(description) // Creating a new task and assigning to local variable
         
-        this.taskList.set(newTask.uuid, newTask) // Setting a map element using uuid from NewTask as key value and whole NewTask object as value
+        this.uuidToTask.set(newTask.uuid, newTask) // Setting a map element using uuid from NewTask as key value and whole NewTask object as value
         
         // I've only done the return for the sake of testing which feels like bad practice?
         return newTask 
@@ -32,14 +32,14 @@ export default class ToDoList {
     async markTaskAsCompleted(uuid) {
         // edit task so it is completed
         // Take the uuid of the task from the Map, pull out of map, set is completed as true, put back into the Map
-        this.taskList.get(uuid).isCompleted = true
+        this.uuidToTask.get(uuid).isCompleted = true
     }
 
     async removeAllTasks() {
         // clears the list of tasks
         // create a new empty Map 
 
-        this.taskList.clear()
+        this.uuidToTask.clear()
     }
 
     // Private API

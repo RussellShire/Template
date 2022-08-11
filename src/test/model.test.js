@@ -19,7 +19,7 @@ describe("model", () => {
 
         await model.addNewTask('test1')
                 
-        expect(model.taskList.size).toBe(1)
+        expect(model.uuidToTask.size).toBe(1)
     })
 
     it("marks task as completed", async () => {
@@ -29,7 +29,7 @@ describe("model", () => {
 
         await model.markTaskAsCompleted(newTask.uuid)
 
-        expect(model.taskList.get(newTask.uuid).isCompleted).toBe(true)
+        expect(model.uuidToTask.get(newTask.uuid).isCompleted).toBe(true)
     })
 
     it("returns all tasks", async () => {
@@ -50,7 +50,7 @@ describe("model", () => {
         
         await model.removeAllTasks()
         
-        expect(model.taskList.size).toBe(0)
+        expect(model.uuidToTask.size).toBe(0)
     })
 
 })
