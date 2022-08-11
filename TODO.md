@@ -51,3 +51,11 @@ Completed tasks are rendered with a strikethrough.
 If the button that marks tasks as completed is triggered passes that task's uuid to the controller
 
 Has a reset button that when triggered tells the controller.
+
+Notes:
+
+Open files from windows folder to make previewing easier
+
+render entire site from view, rather than just the uuidToTask, this will allow me to keep view not knowing the controller
+
+Can have helper render functions. Render title, render form, render list

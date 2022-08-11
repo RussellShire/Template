@@ -1,56 +1,54 @@
-import Model from '../mvc/model.js'
-import { v4 as uuidv4 } from 'uuid'
+import Model from '../mvc/model.js';
+import { v4 as uuidv4 } from 'uuid';
 
-describe("model", () => {
-    
-    it("makes a task", () => {
-        const model = new Model()
+describe('model', () => {
+  it('makes a task', () => {
+    const model = new Model();
 
-        const task = model.createNewTask('test1')
-        
-        expect(task.description).toBe('test1')
-        expect(task.isCompleted).toBe(false)
-        expect(task.createdTime).toBeTruthy()    
-        expect(task.uuid).toBeTruthy()        
-    })
+    const task = model.createNewTask('test1');
 
-    it("adds a task", async () => {
-        const model = new Model()
+    expect(task.description).toBe('test1');
+    expect(task.isCompleted).toBe(false);
+    expect(task.createdTime).toBeTruthy();
+    expect(task.uuid).toBeTruthy();
+  });
 
-        await model.addNewTask('test1')
-                
-        expect(model.uuidToTask.size).toBe(1)
-    })
+  it('adds a task', async () => {
+    const model = new Model();
 
-    it("marks task as completed", async () => {
-        const model = new Model()
+    await model.addNewTask('test1');
 
-        const newTask = await model.addNewTask('completed test')
+    expect(model.uuidToTask.size).toBe(1);
+  });
 
-        await model.markTaskAsCompleted(newTask.uuid)
+  it('marks task as completed', async () => {
+    const model = new Model();
 
-        expect(model.uuidToTask.get(newTask.uuid).isCompleted).toBe(true)
-    })
+    const newTask = await model.addNewTask('completed test');
 
-    it("returns all tasks", async () => {
-        const model = new Model()
-        
-        await model.addNewTask('test1')
-        await model.addNewTask('test2')
+    await model.markTaskAsCompleted(newTask.uuid);
 
-        const tasks = await model.getAllTasks()  
+    expect(model.uuidToTask.get(newTask.uuid).isCompleted).toBe(true);
+  });
 
-        expect(tasks.length).toBe(2)
-    })
+  it('returns all tasks', async () => {
+    const model = new Model();
 
-    it("clears the task list", async () => {
-        const model = new Model()
+    await model.addNewTask('test1');
+    await model.addNewTask('test2');
 
-        await model.addNewTask('test1')
-        
-        await model.removeAllTasks()
-        
-        expect(model.uuidToTask.size).toBe(0)
-    })
+    const tasks = await model.getAllTasks();
 
-})
+    expect(tasks.length).toBe(2);
+  });
+
+  it('clears the task list', async () => {
+    const model = new Model();
+
+    await model.addNewTask('test1');
+
+    await model.removeAllTasks();
+
+    expect(model.uuidToTask.size).toBe(0);
+  });
+});
