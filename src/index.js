@@ -1,6 +1,7 @@
 import Model from './mvc/model.js';
 import View from './mvc/view.js';
 import Controller from './mvc/controller.js';
+import { convertSkypackImportMapToLockfile } from 'snowpack/lib/cjs/util.js';
 
 function main() {
   const m = new Model();
@@ -9,8 +10,10 @@ function main() {
 
   c.sayHelloFromEveryone(); // prove to ourselves the wiring all works
 
-  // testing
   c.renderView();
+
+  // testing
+  //console.log(m.uuidToTask)
 }
 
 main();

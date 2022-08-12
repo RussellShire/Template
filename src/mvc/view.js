@@ -32,9 +32,58 @@ export default class View {
     //Has an input box for new tasks, when tasks are added passes the description to the controller.
   }
 
+  renderForm(controller){
+    const form = document.createElement('form')
+    form.classList.add('form')
+        
+    //input box
+    const formInput = document.createElement('input')
+    formInput.setAttribute('type', 'text')
+    formInput.setAttribute('name', 'taskInput')
+    formInput.setAttribute('placeholder', 'What do you need to do today?')
+    formInput.classList.add('form-input')
+
+    form.appendChild(formInput)
+
+    // button 
+    const formButton = document.createElement('button')
+    formButton.setAttribute('type', 'submit')
+    formButton.textContent = 'Save'
+    formButton.classList.add('form-button')
+
+    form.appendChild(formButton)
+
+    document.body.appendChild(form)
+    
+    const saveTask = (ev) => {
+      const newTaskDescription = formInput.value
+      form.reset() // clear the form
+      ev.preventDefault() // stops submit via html
+      controller.newTaskRequested(newTaskDescription)
+      // console.log(newTaskDescription)
+    }
+
+    form.addEventListener('submit', (ev) => saveTask(ev))
+    
+  }
+
+
   render(taskList, controller) {
     // /*Renders the description of each task on the tasklist alongside a button to mark the task as completed.
     // Completed tasks are rendered with a strikethrough.*/
+    
+    //Title Render
+    const title = document.createElement('h1')
+    title.textContent = 'Task List'
+    title.classList.add('title')
+
+    document.body.appendChild(title)
+    
+    this.renderForm(controller)
+
+
+
+
     // // use create element li
     // taskList.forEach(task => {
     //     newTask = document.createElement('li')
