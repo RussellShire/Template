@@ -14,30 +14,34 @@ export default class Controller {
     console.log(this.view.hello());
   }
 
-  renderView() {
-    const taskList = this.model.getAllTasks();
+  async renderView() {
+    const taskList = await this.model.getAllTasks();
     const controller = this; // this = controller, because it's the class we're in
 
     this.view.render(taskList, controller);
   }
 
-  newTaskRequested(description) {
+  async newTaskRequested(description) {
+    console.log(`newTaskRequested description: ${description}`)
     // Takes a description input from the view and tells the model to add a new task, tells the view to render the task list
-    this.model.addNewTask(description);
-
+    await this.model.addNewTask(description);
+    
+    // testing
+    console.log(this.model.uuidToTask)
+    
     this.renderView();
   }
 
-  taskMarkedAsCompleted(uuid) {
+  async taskMarkedAsCompleted(uuid) {
     // Takes a uuid from the view and tells the model to mark task as completed
-    this.model.taskMarkedAsCompleted(uuid);
+    await this.model.taskMarkedAsCompleted(uuid);
 
     this.renderView();
   }
 
-  clearListRequested() {
+  async clearListRequested() {
     //Takes a reset input from the view and tells the model to clear the task list. Tells the view to rerender the task list empty.
-    this.model.removeAllTasks();
+    await this.model.removeAllTasks();
 
     this.view.renderView();
   }

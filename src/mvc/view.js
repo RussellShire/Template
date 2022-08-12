@@ -33,6 +33,9 @@ export default class View {
   }
 
   renderForm(controller){
+    console.log('view render form function')
+    console.dir(controller)
+    
     const form = document.createElement('form')
     form.classList.add('form')
         
@@ -78,6 +81,9 @@ export default class View {
     title.classList.add('title')
 
     document.body.appendChild(title)
+    
+    console.log('view render function')
+    console.log(JSON.stringify(controller, null, 4))
     
     this.renderForm(controller)
 
