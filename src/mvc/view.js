@@ -83,25 +83,31 @@ export default class View {
       const title = document.createElement('h1')
       title.textContent = 'Task List'
       title.classList.add('title')
-
-      document.body.appendChild(title)}
+      
+      document.body.appendChild(title)
+    }
     
     console.log('view render function')
     console.log(JSON.stringify(controller, null, 4))
     
     this.renderForm(controller)
       
-    if (document.querySelector('.task-list') != null ){
+    if (document.querySelector('.task-list') != null ){  // if there already a list then map through tasklist and create items
+      
       taskList.map(task => {
-        const newCreatedTask = document.createElement("LI")
-        //console.log('working')
-        //console.log(task[1].description)
+        const newCreatedTask = document.createElement("li")
         
-        newCreatedTask.textContent = task[1].description
-        document.body.appendChild(newCreatedTask)
-        })
-    } else {
-      const listForTasks = document.createElement('ol')
+        if (document.getElementById(task[0]) === null){ // checks if task already exists and skips it if so
+          newCreatedTask.setAttribute('id', task[0])
+          newCreatedTask.textContent = task[1].description
+          
+          const createdTaskList = document.querySelector('.task-list')
+          createdTaskList.appendChild(newCreatedTask)
+        }
+      })
+    
+      } else { // if there is no list then create one
+      const listForTasks = document.createElement('ul')
       listForTasks.classList.add('task-list')
       document.body.appendChild(listForTasks)
     }
