@@ -36,7 +36,7 @@ export default class View {
     console.log('view render form function')
     console.dir(controller)
     
-    if (document.querySelector('.form') === null ){
+    if (document.querySelector('.form') === null ){ // IF STATEMENT
       const form = document.createElement('form')
       form.classList.add('form')
           
@@ -78,6 +78,9 @@ export default class View {
     // /*Renders the description of each task on the tasklist alongside a button to mark the task as completed.
     // Completed tasks are rendered with a strikethrough.*/
     
+
+    // QUESTION FOR GRAHAM: I've used a few if statements to check if code already exists before rerendering it, 
+    // but I know if statements are icky. This is one, but there are a couple more, any elegant alternative solutions?
     if (document.querySelector('.title') === null ){
       //Title Render
       const title = document.createElement('h1')
@@ -92,15 +95,23 @@ export default class View {
     
     this.renderForm(controller)
       
-    if (document.querySelector('.task-list') != null ){  // if there already a list then map through tasklist and create items
+    if (document.querySelector('.task-list') != null ){  // IF STATMENT if there already a list then map through tasklist and create items
       
       taskList.map(task => {
         const newCreatedTask = document.createElement("li")
         
-        if (document.getElementById(task[0]) === null){ // checks if task already exists and skips it if so
+        if (document.getElementById(task[0]) === null){ // IF STATEMENT checks if task already exists and skips it if so
           newCreatedTask.setAttribute('id', task[0])
           newCreatedTask.textContent = task[1].description
+
+          const taskCompleteBtn = document.createElement('button')
+          taskCompleteBtn.setAttribute('id', `button-${task[0]}`)
+          taskCompleteBtn.textContent = 'x'
           
+          newCreatedTask.appendChild(taskCompleteBtn)
+
+          // ADD EVENT LISTENER FOR BUTTON HERE
+
           const createdTaskList = document.querySelector('.task-list')
           createdTaskList.appendChild(newCreatedTask)
         }
@@ -111,37 +122,6 @@ export default class View {
       listForTasks.classList.add('task-list')
       document.body.appendChild(listForTasks)
     }
-    // const createdTaskList = querySelector('.task-list')
-    
-    
-
-    // taskList.forEach(task => {
-    //   console.log(`tasklist for each triggered ${task}`)
-    //   const newTask = document.createElement('li')
-    //   newTask.classList.add('task-item')
-    //   newTask.textContent = 'test'
-
-    //   listForTasks.appendChild(newTask)
-    // })
-
-
-
-    // // use create element li
-    // taskList.forEach(task => {
-    //     newTask = document.createElement('li')
-    //     const description = task.description
-    //     newTask.textContent(description)
-    //     newTask.classList.add('task')
-    //     // event listener
-    //     newTask.addEventListener('click', () => {
-    //         this.taskCompleted(task.uuid)
-    //     })
-    //     document.taskList.appendChild(newElement)
-    // }
-    // )
-    // const newElement = document.createElement('li')
-    // // Render whole taskList dynamically, make each id uuid, add a button for mark completed set any marked as completed as stirkethrough
-    // //maybe append element that adds a class that does strikethrough
   }
 
   taskCompleted(uuid) {
