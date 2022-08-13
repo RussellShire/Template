@@ -36,28 +36,30 @@ export default class View {
     console.log('view render form function')
     console.dir(controller)
     
-    const form = document.createElement('form')
-    form.classList.add('form')
-        
-    //input box
-    const formInput = document.createElement('input')
-    formInput.setAttribute('type', 'text')
-    formInput.setAttribute('name', 'taskInput')
-    formInput.setAttribute('placeholder', 'What do you need to do today?')
-    formInput.classList.add('form-input')
+    if (document.querySelector('.form') === null ){
+      const form = document.createElement('form')
+      form.classList.add('form')
+          
+      //input box
+      const formInput = document.createElement('input')
+      formInput.setAttribute('type', 'text')
+      formInput.setAttribute('name', 'taskInput')
+      formInput.setAttribute('placeholder', 'What do you need to do today?')
+      formInput.classList.add('form-input')
 
-    form.appendChild(formInput)
+      form.appendChild(formInput)
 
-    // button 
-    const formButton = document.createElement('button')
-    formButton.setAttribute('type', 'submit')
-    formButton.textContent = 'Save'
-    formButton.classList.add('form-button')
+      // button 
+      const formButton = document.createElement('button')
+      formButton.setAttribute('type', 'submit')
+      formButton.textContent = 'Save'
+      formButton.classList.add('form-button')
 
-    form.appendChild(formButton)
+      form.appendChild(formButton)
 
-    document.body.appendChild(form)
+      document.body.appendChild(form)
     
+
     const saveTask = (ev) => {
       const newTaskDescription = formInput.value
       form.reset() // clear the form
@@ -67,7 +69,8 @@ export default class View {
     }
 
     form.addEventListener('submit', (ev) => saveTask(ev))
-    
+    }
+    return
   }
 
 
@@ -75,18 +78,45 @@ export default class View {
     // /*Renders the description of each task on the tasklist alongside a button to mark the task as completed.
     // Completed tasks are rendered with a strikethrough.*/
     
-    //Title Render
-    const title = document.createElement('h1')
-    title.textContent = 'Task List'
-    title.classList.add('title')
+    if (document.querySelector('.title') === null ){
+      //Title Render
+      const title = document.createElement('h1')
+      title.textContent = 'Task List'
+      title.classList.add('title')
 
-    document.body.appendChild(title)
+      document.body.appendChild(title)}
     
     console.log('view render function')
     console.log(JSON.stringify(controller, null, 4))
     
     this.renderForm(controller)
+      
+    if (document.querySelector('.task-list') != null ){
+      taskList.map(task => {
+        const newCreatedTask = document.createElement("LI")
+        //console.log('working')
+        //console.log(task[1].description)
+        
+        newCreatedTask.textContent = task[1].description
+        document.body.appendChild(newCreatedTask)
+        })
+    } else {
+      const listForTasks = document.createElement('ol')
+      listForTasks.classList.add('task-list')
+      document.body.appendChild(listForTasks)
+    }
+    // const createdTaskList = querySelector('.task-list')
+    
+    
 
+    // taskList.forEach(task => {
+    //   console.log(`tasklist for each triggered ${task}`)
+    //   const newTask = document.createElement('li')
+    //   newTask.classList.add('task-item')
+    //   newTask.textContent = 'test'
+
+    //   listForTasks.appendChild(newTask)
+    // })
 
 
 
