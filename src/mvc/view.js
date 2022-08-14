@@ -151,7 +151,7 @@ export default class View {
     })({ particleCount: 200, spread: 200 });
 
     // QUESTION FOR GRAHAM: I've used a few if statements to check if code already exists before rerendering it,
-    // but I know if statements are icky. This is one, but there are a couple more, any elegant alternative solutions?
+    // but I think if statements are icky? Any elegant alternative solutions?
 
     console.log('view render function');
     console.dir(controller);
