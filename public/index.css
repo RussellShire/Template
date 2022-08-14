@@ -12,3 +12,35 @@
   width: 540px;
   height: 540px;
 }
+
+.task {
+  padding: 1rem;
+}
+
+.task-completed {
+  text-decoration: line-through;
+}
+
+.task-list {
+  padding: 1rem;
+}
+
+.completed-button {
+  padding: 1rem;
+}
+
+.form {
+  padding: 1rem;
+}
+
+.form-button {
+  padding: 1rem;
+}
+
+.form-input {
+  padding: 1rem;
+}
+
+.title {
+  padding: 1rem;
+}
