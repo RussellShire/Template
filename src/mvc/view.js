@@ -104,6 +104,32 @@ export default class View {
     }
   }
 
+  renderResetButton(taskList, controller) {
+    // add reset button
+    if (document.querySelector('.reset-button') === null ){ // IF STATEMENT
+      const resetButton = document.createElement('button')
+      resetButton.classList.add('reset-button')
+      resetButton.textContent = 'reset'
+      document.body.appendChild(resetButton)
+
+      // event listener for reset button
+      const resetButtonPress = (ev) => {
+        console.log(`controller resetButtonPress`)
+        
+        const createdTaskList = document.querySelector('.task-list')
+
+        while (createdTaskList.hasChildNodes()) { // Clears the rendering of tasks
+          createdTaskList.removeChild(createdTaskList.firstChild)
+        }
+
+        controller.clearListRequested() // Actually goes to clear the map in the model so it doesn't rerender
+      }
+
+      resetButton.addEventListener('click', (ev) => resetButtonPress(ev))
+
+    }
+  }
+
   render(taskList, controller) {
     // /*Renders the description of each task on the tasklist alongside a button to mark the task as completed.
     // Completed tasks are rendered with a strikethrough.*/
@@ -132,29 +158,7 @@ export default class View {
     
     this.renderTasks(taskList, controller)
 
-     // add reset button
-     if (document.querySelector('.reset-button') === null ){ // IF STATEMENT
-      const resetButton = document.createElement('button')
-      resetButton.classList.add('reset-button')
-      resetButton.textContent = 'reset'
-      document.body.appendChild(resetButton)
-
-      // event listener for reset button
-      const resetButtonPress = (ev) => {
-        console.log(`controller resetButtonPress`)
-        
-        const createdTaskList = document.querySelector('.task-list')
-
-        while (createdTaskList.hasChildNodes()) { // Clears the rendering of tasks
-          createdTaskList.removeChild(createdTaskList.firstChild)
-        }
-
-        controller.clearListRequested() // Actually goes to clear the map in the model so it doesn't rerender
-      }
-
-      resetButton.addEventListener('click', (ev) => resetButtonPress(ev))
-
-    }
+    this.renderResetButton(taskList, controller)
   }
 
   taskCompleted(uuid) {
