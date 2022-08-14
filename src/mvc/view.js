@@ -70,7 +70,6 @@ export default class View {
 
     form.addEventListener('submit', (ev) => saveTask(ev))
     }
-    return
   }
 
 
@@ -91,7 +90,7 @@ export default class View {
     }
     
     console.log('view render function')
-    console.log(JSON.stringify(controller, null, 4))
+    console.dir(controller)
     
     this.renderForm(controller)
       
@@ -99,18 +98,29 @@ export default class View {
       
       taskList.map(task => {
         const newCreatedTask = document.createElement("li")
-        
-        if (document.getElementById(task[0]) === null){ // IF STATEMENT checks if task already exists and skips it if so
-          newCreatedTask.setAttribute('id', task[0])
+        const newUuid = task[0]
+
+        if (document.getElementById(newUuid) === null){ // IF STATEMENT checks if task already exists and skips it if so
+          newCreatedTask.setAttribute('id', newUuid)
+          newCreatedTask.classList.add('task')
           newCreatedTask.textContent = task[1].description
-
-          const taskCompleteBtn = document.createElement('button')
-          taskCompleteBtn.setAttribute('id', `button-${task[0]}`)
-          taskCompleteBtn.textContent = 'x'
           
-          newCreatedTask.appendChild(taskCompleteBtn)
 
-          // ADD EVENT LISTENER FOR BUTTON HERE
+          const newCompleteBtn = document.createElement('button')
+          newCompleteBtn.setAttribute('id', `button-${newUuid}`)
+          newCompleteBtn.textContent = 'x'
+          
+          // event listener for task completed button
+          const completedButtonPress = (ev) => {
+            console.log(`controller completedButtonPress, uuid: ${newUuid}`)
+            newCreatedTask.classList.add('task-completed')
+            controller.taskMarkedAsCompleted(newUuid)
+          }
+
+          newCompleteBtn.addEventListener('click', (ev) => completedButtonPress(ev))
+
+          // Adding everything to the document
+          newCreatedTask.appendChild(newCompleteBtn)
 
           const createdTaskList = document.querySelector('.task-list')
           createdTaskList.appendChild(newCreatedTask)

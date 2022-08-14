@@ -34,9 +34,12 @@ export default class Controller {
 
   async taskMarkedAsCompleted(uuid) {
     // Takes a uuid from the view and tells the model to mark task as completed
-    await this.model.taskMarkedAsCompleted(uuid);
+    console.log('taskMarkedAsCompleted')
+    console.dir(this)
 
-    this.renderView();
+    await this.model.markTaskAsCompleted(uuid);
+    
+    this.renderView();   
   }
 
   async clearListRequested() {

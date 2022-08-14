@@ -14,8 +14,9 @@ function main() {
   // testing
   
   console.log('index')
-  console.log(JSON.stringify(c, null, 4))
-  console.log(m.uuidToTask)
+  //console.log(JSON.stringify(c, null, 4))
+  console.dir(m)
+  //console.log(m.uuidToTask)
 }
 
 main();
