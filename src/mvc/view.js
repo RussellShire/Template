@@ -64,7 +64,7 @@ export default class View {
       console.log('view renderTasks taskList')
       console.log(taskList)
 
-      taskList.map(task => {
+      taskList.forEach(task => {
         const newCreatedTask = document.createElement("li")
         const newUuid = task[0]
 
@@ -142,7 +142,14 @@ export default class View {
       // event listener for reset button
       const resetButtonPress = (ev) => {
         console.log(`controller resetButtonPress`)
-        controller.clearListRequested()
+        
+        const createdTaskList = document.querySelector('.task-list')
+
+        while (createdTaskList.hasChildNodes()) { // Clears the rendering of tasks
+          createdTaskList.removeChild(createdTaskList.firstChild)
+        }
+
+        controller.clearListRequested() // Actually goes to clear the map in the model so it doesn't rerender
       }
 
       resetButton.addEventListener('click', (ev) => resetButtonPress(ev))
