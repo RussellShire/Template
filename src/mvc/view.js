@@ -12,9 +12,16 @@ export default class View {
     return 'Hello, I am the view';
   }
 
-  taskSubmitted() {
-    console.log('clicked');
-    //Has an input box for new tasks, when tasks are added passes the description to the controller.
+  renderTitle() {
+    if (document.querySelector('.title') === null) {
+      // IF STATEMENT
+      //Title Render
+      const title = document.createElement('h1');
+      title.textContent = 'Task List';
+      title.classList.add('title');
+
+      document.body.appendChild(title);
+    }
   }
 
   renderForm(controller) {
@@ -146,32 +153,15 @@ export default class View {
     // QUESTION FOR GRAHAM: I've used a few if statements to check if code already exists before rerendering it,
     // but I know if statements are icky. This is one, but there are a couple more, any elegant alternative solutions?
 
-    if (document.querySelector('.title') === null) {
-      // IF STATEMENT
-      //Title Render
-      const title = document.createElement('h1');
-      title.textContent = 'Task List';
-      title.classList.add('title');
-
-      document.body.appendChild(title);
-    }
-
     console.log('view render function');
     console.dir(controller);
+
+    this.renderTitle();
 
     this.renderForm(controller);
 
     this.renderTasks(taskList, controller);
 
     this.renderResetButton(taskList, controller);
-  }
-
-  taskCompleted(uuid) {
-    // If the button that marks tasks as completed is triggered passes that task's uuid to the controller
-    // Event listener that passes the uuid to the controller when dynamically created,
-  }
-
-  taskListReset() {
-    // A reset button that when triggered tells the controller.
   }
 }
