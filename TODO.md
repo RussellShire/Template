@@ -59,3 +59,10 @@ Open files from windows folder to make previewing easier
 render entire site from view, rather than just the uuidToTask, this will allow me to keep view not knowing the controller
 
 Can have helper render functions. Render title, render form, render list
+
+To do:
+Fix reset button not working
+CSS styling
+Make tasks completed button toggle on and off
+Add icon to tasks completed button
+Add 'remove completed tasks' button

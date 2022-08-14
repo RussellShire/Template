@@ -7,23 +7,9 @@ export default class View {
     this.taskList = document.getElementById('task-list');
     this.taskInput = document.getElementById('new-task');
 
-    // Event listeners
-    // this.submitButton.onclick = e => { // add eventlisteners onto the html rather than into class
-    //     e.preventDefault()
-
-    //     const input = this.taskInput.value
-
-    //     this.taskInput.value = ''
-
-    //     //this.controller.newTaskRequested(input)
-    //     }
   }
 
   hello() {
-    confetti.create(document.getElementById('canvas'), {
-      resize: true,
-      useWorker: true,
-    })({ particleCount: 200, spread: 200 });
     return 'Hello, I am the view';
   }
 
@@ -72,30 +58,12 @@ export default class View {
     }
   }
 
-
-  render(taskList, controller) {
-    // /*Renders the description of each task on the tasklist alongside a button to mark the task as completed.
-    // Completed tasks are rendered with a strikethrough.*/
-    
-
-    // QUESTION FOR GRAHAM: I've used a few if statements to check if code already exists before rerendering it, 
-    // but I know if statements are icky. This is one, but there are a couple more, any elegant alternative solutions?
-    if (document.querySelector('.title') === null ){
-      //Title Render
-      const title = document.createElement('h1')
-      title.textContent = 'Task List'
-      title.classList.add('title')
-      
-      document.body.appendChild(title)
-    }
-    
-    console.log('view render function')
-    console.dir(controller)
-    
-    this.renderForm(controller)
-      
+  renderTasks(taskList, controller) {
     if (document.querySelector('.task-list') != null ){  // IF STATMENT if there already a list then map through tasklist and create items
       
+      console.log('view renderTasks taskList')
+      console.log(taskList)
+
       taskList.map(task => {
         const newCreatedTask = document.createElement("li")
         const newUuid = task[0]
@@ -105,9 +73,10 @@ export default class View {
           newCreatedTask.classList.add('task')
           newCreatedTask.textContent = task[1].description
           
-
+          // add task completed button
           const newCompleteBtn = document.createElement('button')
           newCompleteBtn.setAttribute('id', `button-${newUuid}`)
+          newCompleteBtn.classList.add('completed-button')
           newCompleteBtn.textContent = 'x'
           
           // event listener for task completed button
@@ -127,10 +96,57 @@ export default class View {
         }
       })
     
-      } else { // if there is no list then create one
+      } else { // else if there is no list then create one
+      
       const listForTasks = document.createElement('ul')
       listForTasks.classList.add('task-list')
-      document.body.appendChild(listForTasks)
+      document.body.appendChild(listForTasks)     
+    }
+  }
+
+  render(taskList, controller) {
+    // /*Renders the description of each task on the tasklist alongside a button to mark the task as completed.
+    // Completed tasks are rendered with a strikethrough.*/
+    
+    confetti.create(document.getElementById('canvas'), {
+      resize: true,
+      useWorker: true,
+    })({ particleCount: 200, spread: 200 });
+
+    // QUESTION FOR GRAHAM: I've used a few if statements to check if code already exists before rerendering it, 
+    // but I know if statements are icky. This is one, but there are a couple more, any elegant alternative solutions?
+        
+    if (document.querySelector('.title') === null ){ // IF STATEMENT
+      //Title Render
+      const title = document.createElement('h1')
+      title.textContent = 'Task List'
+      title.classList.add('title')
+      
+      document.body.appendChild(title)
+    }
+    
+    console.log('view render function')
+    console.dir(controller)
+    
+    this.renderForm(controller)
+    
+    this.renderTasks(taskList, controller)
+
+     // add reset button
+     if (document.querySelector('.reset-button') === null ){ // IF STATEMENT
+      const resetButton = document.createElement('button')
+      resetButton.classList.add('reset-button')
+      resetButton.textContent = 'reset'
+      document.body.appendChild(resetButton)
+
+      // event listener for reset button
+      const resetButtonPress = (ev) => {
+        console.log(`controller resetButtonPress`)
+        controller.clearListRequested()
+      }
+
+      resetButton.addEventListener('click', (ev) => resetButtonPress(ev))
+
     }
   }
 

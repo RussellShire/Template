@@ -42,8 +42,9 @@ export default class ToDoList {
   async removeAllTasks() {
     // clears the list of tasks
     // create a new empty Map
-
-    this.uuidToTask.clear();
+    console.log('model remove all tasks')
+    console.dir(this)
+    await this.uuidToTask.clear();
   }
 
   // Private API

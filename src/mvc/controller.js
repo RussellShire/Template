@@ -17,6 +17,9 @@ export default class Controller {
   async renderView() {
     const taskList = await this.model.getAllTasks();
     const controller = this; // this = controller, because it's the class we're in
+    
+    console.log('controller renderView taskList')
+    console.log(taskList)
 
     this.view.render(taskList, controller);
   }
@@ -46,6 +49,8 @@ export default class Controller {
     //Takes a reset input from the view and tells the model to clear the task list. Tells the view to rerender the task list empty.
     await this.model.removeAllTasks();
 
-    this.view.renderView();
+    console.log('controller clearListRequested')
+
+    this.renderView();
   }
 }
