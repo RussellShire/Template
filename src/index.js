@@ -10,12 +10,12 @@ function main() {
   //c.sayHelloFromEveryone(); // prove to ourselves the wiring all works
 
   c.renderView();
-  
+
   // testing
-  
-  console.log('index')
+
+  console.log('index');
   //console.log(JSON.stringify(c, null, 4))
-  console.dir(m)
+  console.dir(m);
   //console.log(m.uuidToTask)
 }
 
