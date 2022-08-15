@@ -62,6 +62,6 @@ Can have helper render functions. Render title, render form, render list
 
 To do:
 CSS styling
-Make tasks completed button toggle on and off
 Add icon to tasks completed button
 Add 'remove completed tasks' button
+make sure you can't put in blank tasks

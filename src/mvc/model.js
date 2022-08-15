@@ -34,7 +34,7 @@ export default class ToDoList {
   async markTaskAsCompleted(uuid) {
     // edit task so it is completed
     // Take the uuid of the task from the Map, pull out of map, set is completed as true, put back into the Map
-    this.uuidToTask.get(uuid).isCompleted = true;
+    this.uuidToTask.get(uuid).isCompleted === false?  this.uuidToTask.get(uuid).isCompleted = true : this.uuidToTask.get(uuid).isCompleted = false 
     console.log('model: markTaskAsCompleted');
     console.dir(this);
   }
@@ -44,8 +44,21 @@ export default class ToDoList {
     // create a new empty Map
     console.log('model remove all tasks');
     console.dir(this);
+
     await this.uuidToTask.clear();
   }
+
+  async removeCompletedTasks() {
+    console.log('model remove completed tasks');
+    console.dir(this);
+
+    this.uuidToTask.forEach(task => {
+      if (task.isCompleted) {
+        this.uuidToTask.delete(task.uuid)
+      }
+    })
+  }
+  
 
   // Private API
   createNewTask(description) {
