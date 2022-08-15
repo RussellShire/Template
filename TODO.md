@@ -61,7 +61,6 @@ render entire site from view, rather than just the uuidToTask, this will allow m
 Can have helper render functions. Render title, render form, render list
 
 To do:
-Fix reset button not working
 CSS styling
 Make tasks completed button toggle on and off
 Add icon to tasks completed button
