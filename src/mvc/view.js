@@ -50,6 +50,13 @@ export default class View {
 
       form.appendChild(formButton);
 
+      // error message
+      const errorMessage = document.createElement('div')
+      errorMessage.classList.add('error-message');
+      errorMessage.setAttribute('id', 'error-message')
+
+      form.appendChild(errorMessage);
+
       document.body.appendChild(form);
 
       const saveTask = (ev) => {
@@ -90,7 +97,14 @@ export default class View {
           // event listener for task completed button
           const completedButtonPress = (ev) => {
             console.log(`controller completedButtonPress, uuid: ${newUuid}`);
-            newCreatedTask.classList.add('task-completed');
+
+            // Ternary opertator to toggle between applying and removing task-completed class which adds strike through
+            const task = taskList.filter((task) => task[0] === newUuid);
+            task[0][1].isCompleted
+              ? newCreatedTask.classList.remove('task-completed')
+              : newCreatedTask.classList.add('task-completed');
+
+            // Sends uuid to update the Map
             controller.taskMarkedAsCompleted(newUuid);
           };
 
@@ -141,6 +155,35 @@ export default class View {
     }
   }
 
+  renderRemoveCompletedButton(taskList, controller) {
+    // add remove completed button
+    if (document.querySelector('.remove-completed-button') === null) {
+      // IF STATEMENT
+      const removeCompletedButton = document.createElement('button');
+      removeCompletedButton.classList.add('remove-completed-button');
+      removeCompletedButton.textContent = 'remove completed';
+      document.body.appendChild(removeCompletedButton);
+
+      // event listener for reset button
+      const removeCompletedButtonPress = (ev) => {
+        console.log(`controller removeCompletedButtonPress`);
+
+        const createdTaskList = document.querySelector('.task-list');
+
+        while (createdTaskList.hasChildNodes()) {
+          // Clears the rendering of tasks
+          createdTaskList.removeChild(createdTaskList.firstChild);
+        }
+
+        controller.clearCompletedRequested(); // Actually goes to clear the map in the model so it doesn't rerender
+      };
+
+      removeCompletedButton.addEventListener('click', (ev) =>
+        removeCompletedButtonPress(ev),
+      );
+    }
+  }
+
   render(taskList, controller) {
     // /*Renders the description of each task on the tasklist alongside a button to mark the task as completed.
     // Completed tasks are rendered with a strikethrough.*/
@@ -163,5 +206,7 @@ export default class View {
     this.renderTasks(taskList, controller);
 
     this.renderResetButton(taskList, controller);
+
+    this.renderRemoveCompletedButton(taskList, controller);
   }
 }

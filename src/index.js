@@ -11,12 +11,12 @@ function main() {
 
   c.renderView();
 
-  // testing
-
-  console.log('index');
+  // TESTING
+  
+  // console.log('index');
+  
+  // console.dir(m);
   //console.log(JSON.stringify(c, null, 4))
-  console.dir(m);
-  //console.log(m.uuidToTask)
 }
 
 main();

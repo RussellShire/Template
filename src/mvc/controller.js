@@ -25,14 +25,24 @@ export default class Controller {
   }
 
   async newTaskRequested(description) {
-    console.log(`newTaskRequested description: ${description}`);
+    console.log('newTaskRequested description');
+    console.log(description);
+
     // Takes a description input from the view and tells the model to add a new task, tells the view to render the task list
-    await this.model.addNewTask(description);
+    // If description is blank will throw an error
 
-    // testing
-    console.log(this.model.uuidToTask);
+    const errorMessage = document.querySelector('.error-message')
+    
+    if (description === '') {
+      errorMessage.textContent = 'Tasks must be described'
 
-    this.renderView();
+    } else {
+      errorMessage.textContent = null;
+
+      await this.model.addNewTask(description);
+      
+      this.renderView();
+    }
   }
 
   async taskMarkedAsCompleted(uuid) {
@@ -50,6 +60,14 @@ export default class Controller {
     await this.model.removeAllTasks();
 
     console.log('controller clearListRequested');
+
+    this.renderView();
+  }
+
+  async clearCompletedRequested() {
+    //Takes a reset input from the view and tells the model to clear the task list. Tells the view to rerender the task list empty.
+    console.log('controller clearCompletedRequested');
+    await this.model.removeCompletedTasks();
 
     this.renderView();
   }

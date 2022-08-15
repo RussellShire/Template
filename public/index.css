@@ -48,3 +48,12 @@
 .reset-button {
   padding: 1rem;
 }
+
+.remove-completed-button {
+  padding: 1rem;
+}
+
+.error-message {
+  display: inline-flex;
+  background-color: red;
+}

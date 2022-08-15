@@ -6,10 +6,10 @@
 - [x] Implement our model (with unit tests)
 - [x] Define our controller with psudocode
 - [x] Logically test our defitionions by explaining them
-- [ ] Implement our controller
+- [x] Implement our controller
 - [x] Define our view with psudocode
 - [x] Logically test our definitions by explaining them
-- [ ] Implement our view
+- [x] Implement our view
 - [ ] Perform user acceptence testing
 - [ ] Perform a retrospective
 
@@ -63,5 +63,5 @@ Can have helper render functions. Render title, render form, render list
 To do:
 CSS styling
 Add icon to tasks completed button
-Add 'remove completed tasks' button
-make sure you can't put in blank tasks
+Test 'remove completed tasks' in the model
+Validation to stop blank tasks
