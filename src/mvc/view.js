@@ -16,11 +16,17 @@ export default class View {
     if (document.querySelector('.title') === null) {
       // IF STATEMENT
       //Title Render
+      const titleDiv = document.createElement('div')
+      titleDiv.classList.add('titleDiv')
+
       const title = document.createElement('h1');
       title.textContent = 'My Task List';
       title.classList.add('title');
 
-      document.body.appendChild(title);
+      titleDiv.appendChild(title);
+
+      const container = document.querySelector('.container')
+      container.appendChild(titleDiv);
     }
   }
 
@@ -57,7 +63,8 @@ export default class View {
 
       form.appendChild(errorMessage);
 
-      document.body.appendChild(form);
+      const container = document.querySelector('.container')
+      container.appendChild(form);
 
       const saveTask = (ev) => {
         const newTaskDescription = formInput.value;
@@ -136,7 +143,9 @@ export default class View {
 
       const listForTasks = document.createElement('ul');
       listForTasks.classList.add('task-list');
-      document.body.appendChild(listForTasks);
+
+      const container = document.querySelector('.container')
+      container.appendChild(listForTasks);
     }
   }
 
@@ -147,8 +156,10 @@ export default class View {
       const resetButton = document.createElement('button');
       resetButton.classList.add('reset-button', 'button-styling');
       resetButton.textContent = 'reset all';
-      document.body.appendChild(resetButton);
 
+      const bottomButtons = document.querySelector('.bottom-button-container');
+      bottomButtons.appendChild(resetButton);
+      
       // event listener for reset button
       const resetButtonPress = (ev) => {
         console.log(`controller resetButtonPress`);
@@ -174,7 +185,9 @@ export default class View {
       const removeCompletedButton = document.createElement('button');
       removeCompletedButton.classList.add('remove-completed-button', 'button-styling');
       removeCompletedButton.textContent = 'remove completed';
-      document.body.appendChild(removeCompletedButton);
+
+      const bottomButtons = document.querySelector('.bottom-button-container');
+      bottomButtons.appendChild(removeCompletedButton);
 
       // event listener for reset button
       const removeCompletedButtonPress = (ev) => {
@@ -211,11 +224,24 @@ export default class View {
     console.log('view render function');
     console.dir(controller);
 
+    if (document.getElementById('container') === null) { // IF STATEMENT
+    const container = document.createElement('span')
+    container.classList.add('container')
+    container.setAttribute('id', 'container')
+    document.body.appendChild(container)
+    }
+
     this.renderTitle();
 
     this.renderForm(controller);
 
     this.renderTasks(taskList, controller);
+
+    if (document.querySelector('.bottom-button-container') === null) { // IF STATEMENT
+    const bottomButtons = document.createElement('span')
+    bottomButtons.classList.add('bottom-button-container')
+    container.appendChild(bottomButtons)
+    }
 
     this.renderResetButton(taskList, controller);
 
