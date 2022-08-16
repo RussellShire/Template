@@ -64,4 +64,3 @@ To do:
 CSS styling
 Add icon to tasks completed button
 Test 'remove completed tasks' in the model
-Validation to stop blank tasks

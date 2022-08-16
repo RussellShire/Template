@@ -27,7 +27,6 @@ export default class ToDoList {
 
     this.uuidToTask.set(newTask.uuid, newTask); // Setting a map element using uuid from NewTask as key value and whole NewTask object as value
 
-    // I've only done the return for the sake of testing which feels like bad practice?
     return newTask;
   }
 
