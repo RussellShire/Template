@@ -17,7 +17,7 @@ export default class View {
       // IF STATEMENT
       //Title Render
       const title = document.createElement('h1');
-      title.textContent = 'Task List';
+      title.textContent = 'My Task List';
       title.classList.add('title');
 
       document.body.appendChild(title);
@@ -46,7 +46,7 @@ export default class View {
       const formButton = document.createElement('button');
       formButton.setAttribute('type', 'submit');
       formButton.textContent = 'Save';
-      formButton.classList.add('form-button');
+      formButton.classList.add('form-button', 'button-styling');
 
       form.appendChild(formButton);
 
@@ -92,7 +92,7 @@ export default class View {
 
           // QUESTION FOR GRAHAM: Is fontawesome a dependency, I didn't need to install anything through node
           const newCompleteBtn = document.createElement('i');
-          newCompleteBtn.classList.add('fa-solid', 'fa-circle-check', 'completed-button');
+          newCompleteBtn.classList.add('fa-solid', 'fa-circle-dot', 'completed-button');
           newCompleteBtn.setAttribute('id', `button-${newUuid}`);
 
           // event listener for task completed button
@@ -101,9 +101,15 @@ export default class View {
 
             // Ternary opertator to toggle between applying and removing task-completed class which adds strike through
             const task = taskList.filter((task) => task[0] === newUuid);
-            task[0][1].isCompleted
-              ? newCreatedTask.classList.remove('task-completed')
-              : newCreatedTask.classList.add('task-completed');
+            if(task[0][1].isCompleted) {
+              newCreatedTask.classList.remove('task-completed')
+              newCompleteBtn.classList.remove('fa-circle-check')
+              newCompleteBtn.classList.add('fa-circle-dot')
+              } else {
+              newCreatedTask.classList.add('task-completed')
+              newCompleteBtn.classList.remove('fa-circle-dot')
+              newCompleteBtn.classList.add('fa-circle-check')
+              }
 
             // Sends uuid to update the Map
             controller.taskMarkedAsCompleted(newUuid);
@@ -139,7 +145,7 @@ export default class View {
     if (document.querySelector('.reset-button') === null) {
       // IF STATEMENT
       const resetButton = document.createElement('button');
-      resetButton.classList.add('reset-button');
+      resetButton.classList.add('reset-button', 'button-styling');
       resetButton.textContent = 'reset all';
       document.body.appendChild(resetButton);
 
@@ -166,7 +172,7 @@ export default class View {
     if (document.querySelector('.remove-completed-button') === null) {
       // IF STATEMENT
       const removeCompletedButton = document.createElement('button');
-      removeCompletedButton.classList.add('remove-completed-button');
+      removeCompletedButton.classList.add('remove-completed-button', 'button-styling');
       removeCompletedButton.textContent = 'remove completed';
       document.body.appendChild(removeCompletedButton);
 
@@ -194,10 +200,10 @@ export default class View {
     // /*Renders the description of each task on the tasklist alongside a button to mark the task as completed.
     // Completed tasks are rendered with a strikethrough.*/
 
-    confetti.create(document.getElementById('canvas'), {
-      resize: true,
-      useWorker: true,
-    })({ particleCount: 200, spread: 200 });
+    // confetti.create(document.getElementById('canvas'), {
+    //   resize: true,
+    //   useWorker: true,
+    // })({ particleCount: 200, spread: 200 });
 
     // QUESTION FOR GRAHAM: I've used a few if statements to check if code already exists before rerendering it,
     // but I think if statements are icky? Any elegant alternative solutions?

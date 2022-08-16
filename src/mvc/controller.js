@@ -34,7 +34,7 @@ export default class Controller {
     const errorMessage = document.querySelector('.error-message');
 
     if (description === '') {
-      errorMessage.textContent = 'Tasks must be described';
+      errorMessage.textContent = ' Tasks must be described ';
     } else {
       errorMessage.textContent = null;
 

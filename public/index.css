@@ -1,17 +1,89 @@
 * {
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: 'Signika Negative', sans-serif;
+  /* font-weight: 400; */
+  color: var(--darkest-color);
+  background-color: var(--light-color);
+}
+
+:root {
+  --lightest-color: #EEF0F2;
+  --light-color: #C6C7C4;
+  --mid-color: #A2999E;
+  --dark-color: #846A6A;
+  --darkest-color: #353B3C;
+  /* --lightest-color: #E08dac;
+  --light-color: #6A7FDB;
+  --mid-color: #57e2e5;
+  --dark-color: #45cb85;
+  --darkest-color: #153131; */
+
+}
+
+
+.title {
+  margin-left: 1rem;
+  font-weight: bold;
 }
 
 .task {
-  padding: 1rem;
   list-style: none;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 .task-completed {
-  /* text-decoration: line-through; */
   position: relative;
 }
 
+.task-list {
+  padding: 0rem;
+}
+
+.completed-button {
+  padding-right: 0.5rem;
+  color: var(--darkest-color);
+}
+
+.form {
+  margin-left: 1rem;
+}
+
+.form-button {
+  padding-bottom: 1rem;
+}
+
+.form-input {
+  font-weight: 400;
+  position: relative;
+  min-width: 200px;
+  margin: 0rem 1rem 0rem 0rem;
+  padding: 0.6rem;
+  margin-bottom: 0.1rem;
+  background-color: var(--lightest-color);
+}
+
+.reset-button {
+  margin: 1rem;
+}
+
+.remove-completed-button {
+  margin: 0rem;
+}
+
+.error-message {
+  display: inline-flex;
+  background-color: var(--mid-color);
+  margin-left: 1rem;
+  color: var(--lightest-color)
+}
+
+.task-container {
+  display: flex;
+  margin: 0 0 0.7rem 3rem;
+  font-weight: 300;
+}
+
+/* Strikethrough animation */
 @keyframes strike{
   0%   { width : 0;}
   100% { width: 100%;}
@@ -20,12 +92,13 @@
 .task-completed::after {
   content: ' ';
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 0;
   width: 100%;
   height: 5px;
-  opacity: 0.9;
-  background: black;
+  opacity: 0.85;
+  border-radius: 1rem;
+  background: var(--darkest-color);
   animation-name: strike;
   animation-duration: 0.15s;
   animation-timing-function: linear;
@@ -33,43 +106,32 @@
   animation-fill-mode: forwards; 
 }
 
-.task-list {
-  padding: 1rem;
+.button-styling {
+  /* font-family: "Open Sans", sans-serif; */
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-transform: capitalize;
+  color: var(--darkest-color);
+  background-color: var(--lightest-color);
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.25em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
 
-.completed-button {
-  padding: 1rem;
-  color: black;
+.button-styling:active {
+  box-shadow: 0px 0px 0px 0px;
+  top: 5px;
+  left: 5px;
 }
 
-.form {
-  padding: 1rem;
-}
-
-.form-button {
-  padding: 1rem;
-}
-
-.form-input {
-  padding: 1rem;
-}
-
-.title {
-  padding: 1rem;
-}
-
-.reset-button {
-  padding: 1rem;
-}
-
-.remove-completed-button {
-  padding: 1rem;
-}
-
-.error-message {
-  display: inline-flex;
-  background-color: red;
-}
-.task-container {
-  display: flex;
+@media (min-width: 768px) {
+  .button-styling {
+    padding: 0.25em 0.75em;
+  }
 }
