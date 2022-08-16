@@ -140,7 +140,7 @@ export default class View {
       // IF STATEMENT
       const resetButton = document.createElement('button');
       resetButton.classList.add('reset-button');
-      resetButton.textContent = 'reset';
+      resetButton.textContent = 'reset all';
       document.body.appendChild(resetButton);
 
       // event listener for reset button

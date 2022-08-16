@@ -1,16 +1,5 @@
-#img {
-  display: block;
-  margin: auto;
-  height: 128px;
-  width: 128px;
-  padding: 2rem;
-}
-
-#canvas {
-  display: block;
-  margin: 2rem auto;
-  width: 540px;
-  height: 540px;
+* {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .task {
@@ -19,7 +8,29 @@
 }
 
 .task-completed {
-  text-decoration: line-through;
+  /* text-decoration: line-through; */
+  position: relative;
+}
+
+@keyframes strike{
+  0%   { width : 0;}
+  100% { width: 100%;}
+}
+
+.task-completed::after {
+  content: ' ';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  opacity: 0.9;
+  background: black;
+  animation-name: strike;
+  animation-duration: 0.15s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards; 
 }
 
 .task-list {
