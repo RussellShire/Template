@@ -1,8 +1,8 @@
 * {
   font-family: 'Signika Negative', sans-serif;
-  /* font-weight: 400; */
   color: var(--darkest-color);
   background-color: var(--light-color);
+  margin: 0;
 }
 
 :root {
@@ -19,16 +19,17 @@
 
 }
 
-
 .title {
-  margin-left: 1rem;
-  font-weight: bold;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: var(--mid-color);
 }
 
 .task {
   list-style: none;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+  margin-left: 0.5rem;
 }
 
 .task-completed {
@@ -40,12 +41,18 @@
 }
 
 .completed-button {
-  padding-right: 0.5rem;
+  /* padding-right: 0.5rem; */
   color: var(--darkest-color);
+  background-color: var(--lightest-color);
+  /* position: relative; */
+  border-radius: 1rem;
+  /* border-style: inset; */
+  /* border: 10px; */
 }
 
 .form {
   margin-left: 1rem;
+  margin-bottom: 1rem;
 }
 
 .form-button {
