@@ -89,10 +89,11 @@ export default class View {
           newCreatedTask.textContent = task[1].description;
 
           // add task completed button
-          const newCompleteBtn = document.createElement('button');
+
+          // QUESTION FOR GRAHAM: Is fontawesome a dependency, I didn't need to install anything through node
+          const newCompleteBtn = document.createElement('i');
+          newCompleteBtn.classList.add('fa-solid', 'fa-circle-check', 'completed-button');
           newCompleteBtn.setAttribute('id', `button-${newUuid}`);
-          newCompleteBtn.classList.add('completed-button');
-          newCompleteBtn.textContent = 'x';
 
           // event listener for task completed button
           const completedButtonPress = (ev) => {
@@ -113,10 +114,15 @@ export default class View {
           );
 
           // Adding everything to the document
-          newCreatedTask.appendChild(newCompleteBtn);
+          // newCreatedTask.appendChild(newCompleteBtn);
+          const taskContainer = document.createElement('span')
+          taskContainer.classList.add('task-container')
+          
+          taskContainer.appendChild(newCompleteBtn);
+          taskContainer.appendChild(newCreatedTask);
 
           const createdTaskList = document.querySelector('.task-list');
-          createdTaskList.appendChild(newCreatedTask);
+          createdTaskList.appendChild(taskContainer);
         }
       });
     } else {

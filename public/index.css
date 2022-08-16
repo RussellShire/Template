@@ -15,6 +15,7 @@
 
 .task {
   padding: 1rem;
+  list-style: none;
 }
 
 .task-completed {
@@ -27,6 +28,7 @@
 
 .completed-button {
   padding: 1rem;
+  color: black;
 }
 
 .form {
@@ -56,4 +58,7 @@
 .error-message {
   display: inline-flex;
   background-color: red;
+}
+.task-container {
+  display: flex;
 }
