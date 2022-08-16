@@ -16,8 +16,8 @@ export default class View {
     if (document.querySelector('.title') === null) {
       // IF STATEMENT
       //Title Render
-      const titleDiv = document.createElement('div')
-      titleDiv.classList.add('titleDiv')
+      const titleDiv = document.createElement('div');
+      titleDiv.classList.add('titleDiv');
 
       const title = document.createElement('h1');
       title.textContent = 'My Task List';
@@ -25,7 +25,7 @@ export default class View {
 
       titleDiv.appendChild(title);
 
-      const container = document.querySelector('.container')
+      const container = document.querySelector('.container');
       container.appendChild(titleDiv);
     }
   }
@@ -63,7 +63,7 @@ export default class View {
 
       form.appendChild(errorMessage);
 
-      const container = document.querySelector('.container')
+      const container = document.querySelector('.container');
       container.appendChild(form);
 
       const saveTask = (ev) => {
@@ -99,7 +99,11 @@ export default class View {
 
           // QUESTION FOR GRAHAM: Is fontawesome a dependency, I didn't need to install anything through node
           const newCompleteBtn = document.createElement('i');
-          newCompleteBtn.classList.add('fa-solid', 'fa-circle-dot', 'completed-button');
+          newCompleteBtn.classList.add(
+            'fa-solid',
+            'fa-circle-dot',
+            'completed-button',
+          );
           newCompleteBtn.setAttribute('id', `button-${newUuid}`);
 
           // event listener for task completed button
@@ -108,15 +112,15 @@ export default class View {
 
             // Ternary opertator to toggle between applying and removing task-completed class which adds strike through
             const task = taskList.filter((task) => task[0] === newUuid);
-            if(task[0][1].isCompleted) {
-              newCreatedTask.classList.remove('task-completed')
-              newCompleteBtn.classList.remove('fa-circle-check')
-              newCompleteBtn.classList.add('fa-circle-dot')
-              } else {
-              newCreatedTask.classList.add('task-completed')
-              newCompleteBtn.classList.remove('fa-circle-dot')
-              newCompleteBtn.classList.add('fa-circle-check')
-              }
+            if (task[0][1].isCompleted) {
+              newCreatedTask.classList.remove('task-completed');
+              newCompleteBtn.classList.remove('fa-circle-check');
+              newCompleteBtn.classList.add('fa-circle-dot');
+            } else {
+              newCreatedTask.classList.add('task-completed');
+              newCompleteBtn.classList.remove('fa-circle-dot');
+              newCompleteBtn.classList.add('fa-circle-check');
+            }
 
             // Sends uuid to update the Map
             controller.taskMarkedAsCompleted(newUuid);
@@ -128,9 +132,9 @@ export default class View {
 
           // Adding everything to the document
           // newCreatedTask.appendChild(newCompleteBtn);
-          const taskContainer = document.createElement('span')
-          taskContainer.classList.add('task-container')
-          
+          const taskContainer = document.createElement('span');
+          taskContainer.classList.add('task-container');
+
           taskContainer.appendChild(newCompleteBtn);
           taskContainer.appendChild(newCreatedTask);
 
@@ -144,7 +148,7 @@ export default class View {
       const listForTasks = document.createElement('ul');
       listForTasks.classList.add('task-list');
 
-      const container = document.querySelector('.container')
+      const container = document.querySelector('.container');
       container.appendChild(listForTasks);
     }
   }
@@ -159,7 +163,7 @@ export default class View {
 
       const bottomButtons = document.querySelector('.bottom-button-container');
       bottomButtons.appendChild(resetButton);
-      
+
       // event listener for reset button
       const resetButtonPress = (ev) => {
         console.log(`controller resetButtonPress`);
@@ -183,7 +187,10 @@ export default class View {
     if (document.querySelector('.remove-completed-button') === null) {
       // IF STATEMENT
       const removeCompletedButton = document.createElement('button');
-      removeCompletedButton.classList.add('remove-completed-button', 'button-styling');
+      removeCompletedButton.classList.add(
+        'remove-completed-button',
+        'button-styling',
+      );
       removeCompletedButton.textContent = 'remove completed';
 
       const bottomButtons = document.querySelector('.bottom-button-container');
@@ -224,11 +231,12 @@ export default class View {
     console.log('view render function');
     console.dir(controller);
 
-    if (document.getElementById('container') === null) { // IF STATEMENT
-    const container = document.createElement('span')
-    container.classList.add('container')
-    container.setAttribute('id', 'container')
-    document.body.appendChild(container)
+    if (document.getElementById('container') === null) {
+      // IF STATEMENT
+      const container = document.createElement('span');
+      container.classList.add('container');
+      container.setAttribute('id', 'container');
+      document.body.appendChild(container);
     }
 
     this.renderTitle();
@@ -237,10 +245,11 @@ export default class View {
 
     this.renderTasks(taskList, controller);
 
-    if (document.querySelector('.bottom-button-container') === null) { // IF STATEMENT
-    const bottomButtons = document.createElement('span')
-    bottomButtons.classList.add('bottom-button-container')
-    container.appendChild(bottomButtons)
+    if (document.querySelector('.bottom-button-container') === null) {
+      // IF STATEMENT
+      const bottomButtons = document.createElement('span');
+      bottomButtons.classList.add('bottom-button-container');
+      container.appendChild(bottomButtons);
     }
 
     this.renderResetButton(taskList, controller);
