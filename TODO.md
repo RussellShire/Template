@@ -63,4 +63,3 @@ Can have helper render functions. Render title, render form, render list
 To do:
 CSS styling
 Add icon to tasks completed button
-Test 'remove completed tasks' in the model

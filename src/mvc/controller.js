@@ -31,16 +31,15 @@ export default class Controller {
     // Takes a description input from the view and tells the model to add a new task, tells the view to render the task list
     // If description is blank will throw an error
 
-    const errorMessage = document.querySelector('.error-message')
-    
-    if (description === '') {
-      errorMessage.textContent = 'Tasks must be described'
+    const errorMessage = document.querySelector('.error-message');
 
+    if (description === '') {
+      errorMessage.textContent = 'Tasks must be described';
     } else {
       errorMessage.textContent = null;
 
       await this.model.addNewTask(description);
-      
+
       this.renderView();
     }
   }

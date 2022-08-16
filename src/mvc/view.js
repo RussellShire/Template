@@ -51,9 +51,9 @@ export default class View {
       form.appendChild(formButton);
 
       // error message
-      const errorMessage = document.createElement('div')
+      const errorMessage = document.createElement('div');
       errorMessage.classList.add('error-message');
-      errorMessage.setAttribute('id', 'error-message')
+      errorMessage.setAttribute('id', 'error-message');
 
       form.appendChild(errorMessage);
 

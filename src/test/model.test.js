@@ -64,8 +64,7 @@ describe('model', () => {
     await model.removeCompletedTasks();
 
     expect(model.uuidToTask.size).toBe(1);
-    expect(model.uuidToTask.get(notCompletedTask.uuid)).toBe(notCompletedTask)
-    expect(model.uuidToTask.get(completedTask.uuid)).toBe(undefined)
-  })
-
+    expect(model.uuidToTask.get(notCompletedTask.uuid)).toBe(notCompletedTask);
+    expect(model.uuidToTask.get(completedTask.uuid)).toBe(undefined);
+  });
 });
