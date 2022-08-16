@@ -61,5 +61,4 @@ render entire site from view, rather than just the uuidToTask, this will allow m
 Can have helper render functions. Render title, render form, render list
 
 To do:
-CSS styling
-Add icon to tasks completed button
+Move error render into view to maintain
