@@ -1,21 +1,7 @@
-import confetti from 'canvas-confetti';
-
 export default class View {
-  constructor() {
-    // DOM elements
-    this.submitButton = document.getElementById('submit');
-    this.taskList = document.getElementById('task-list');
-    this.taskInput = document.getElementById('new-task');
-  }
-
-  hello() {
-    return 'Hello, I am the view';
-  }
-
+  
   renderTitle() {
     if (document.querySelector('.title') === null) {
-      // IF STATEMENT
-      //Title Render
       const titleDiv = document.createElement('div');
       titleDiv.classList.add('titleDiv');
 
@@ -35,7 +21,6 @@ export default class View {
     console.dir(controller);
 
     if (document.querySelector('.form') === null) {
-      // IF STATEMENT
       const form = document.createElement('form');
       form.classList.add('form');
 
@@ -48,7 +33,7 @@ export default class View {
 
       form.appendChild(formInput);
 
-      // button
+      // add the button
       const formButton = document.createElement('button');
       formButton.setAttribute('type', 'submit');
       formButton.textContent = 'Save';
@@ -56,22 +41,14 @@ export default class View {
 
       form.appendChild(formButton);
 
-      // error message
-      const errorMessage = document.createElement('div');
-      errorMessage.classList.add('error-message');
-      errorMessage.setAttribute('id', 'error-message');
-
-      form.appendChild(errorMessage);
-
       const container = document.querySelector('.container');
       container.appendChild(form);
 
       const saveTask = (ev) => {
         const newTaskDescription = formInput.value;
-        form.reset(); // clear the form
-        ev.preventDefault(); // stops submit via html
+        form.reset();
+        ev.preventDefault(); 
         controller.newTaskRequested(newTaskDescription);
-        // console.log(newTaskDescription)
       };
 
       form.addEventListener('submit', (ev) => saveTask(ev));
@@ -80,39 +57,26 @@ export default class View {
 
   renderTasks(taskList, controller) {
     if (document.querySelector('.task-list') != null) {
-      // IF STATMENT if there already a list then map through tasklist and create items
-
-      console.log('view renderTasks taskList');
-      console.log(taskList);
-
       taskList.forEach((task) => {
         const newCreatedTask = document.createElement('li');
-        const newUuid = task[0];
 
-        if (document.getElementById(newUuid) === null) {
-          // IF STATEMENT checks if task already exists and skips it if so
-          newCreatedTask.setAttribute('id', newUuid);
+        if (document.getElementById(task.uuid) === null) {
+          newCreatedTask.setAttribute('id', task.uuid);
           newCreatedTask.classList.add('task');
-          newCreatedTask.textContent = task[1].description;
+          newCreatedTask.textContent = task.description;
 
           // add task completed button
-
-          // QUESTION FOR GRAHAM: Is fontawesome a dependency, I didn't need to install anything through node
           const newCompleteBtn = document.createElement('i');
           newCompleteBtn.classList.add(
             'fa-solid',
             'fa-circle-dot',
             'completed-button',
           );
-          newCompleteBtn.setAttribute('id', `button-${newUuid}`);
+          newCompleteBtn.setAttribute('id', `button-${task.uuid}`);
 
           // event listener for task completed button
           const completedButtonPress = (ev) => {
-            console.log(`controller completedButtonPress, uuid: ${newUuid}`);
-
-            // Ternary opertator to toggle between applying and removing task-completed class which adds strike through
-            const task = taskList.filter((task) => task[0] === newUuid);
-            if (task[0][1].isCompleted) {
+            if (task.isCompleted) {
               newCreatedTask.classList.remove('task-completed');
               newCompleteBtn.classList.remove('fa-circle-check');
               newCompleteBtn.classList.add('fa-circle-dot');
@@ -122,8 +86,7 @@ export default class View {
               newCompleteBtn.classList.add('fa-circle-check');
             }
 
-            // Sends uuid to update the Map
-            controller.taskMarkedAsCompleted(newUuid);
+            controller.taskCompletionToggled(task.uuid);
           };
 
           newCompleteBtn.addEventListener('click', (ev) =>
@@ -131,7 +94,6 @@ export default class View {
           );
 
           // Adding everything to the document
-          // newCreatedTask.appendChild(newCompleteBtn);
           const taskContainer = document.createElement('span');
           taskContainer.classList.add('task-container');
 
@@ -143,8 +105,6 @@ export default class View {
         }
       });
     } else {
-      // else if there is no list then create one
-
       const listForTasks = document.createElement('ul');
       listForTasks.classList.add('task-list');
 
@@ -156,7 +116,6 @@ export default class View {
   renderResetButton(taskList, controller) {
     // add reset button
     if (document.querySelector('.reset-button') === null) {
-      // IF STATEMENT
       const resetButton = document.createElement('button');
       resetButton.classList.add('reset-button', 'button-styling');
       resetButton.textContent = 'reset all';
@@ -175,7 +134,7 @@ export default class View {
           createdTaskList.removeChild(createdTaskList.firstChild);
         }
 
-        controller.clearListRequested(); // Actually goes to clear the map in the model so it doesn't rerender
+        controller.clearListRequested();
       };
 
       resetButton.addEventListener('click', (ev) => resetButtonPress(ev));
@@ -185,7 +144,6 @@ export default class View {
   renderRemoveCompletedButton(taskList, controller) {
     // add remove completed button
     if (document.querySelector('.remove-completed-button') === null) {
-      // IF STATEMENT
       const removeCompletedButton = document.createElement('button');
       removeCompletedButton.classList.add(
         'remove-completed-button',
@@ -203,7 +161,6 @@ export default class View {
         const createdTaskList = document.querySelector('.task-list');
 
         while (createdTaskList.hasChildNodes()) {
-          // Clears the rendering of tasks
           createdTaskList.removeChild(createdTaskList.firstChild);
         }
 
@@ -217,22 +174,7 @@ export default class View {
   }
 
   render(taskList, controller) {
-    // /*Renders the description of each task on the tasklist alongside a button to mark the task as completed.
-    // Completed tasks are rendered with a strikethrough.*/
-
-    // confetti.create(document.getElementById('canvas'), {
-    //   resize: true,
-    //   useWorker: true,
-    // })({ particleCount: 200, spread: 200 });
-
-    // QUESTION FOR GRAHAM: I've used a few if statements to check if code already exists before rerendering it,
-    // but I think if statements are icky? Any elegant alternative solutions?
-
-    console.log('view render function');
-    console.dir(controller);
-
     if (document.getElementById('container') === null) {
-      // IF STATEMENT
       const container = document.createElement('span');
       container.classList.add('container');
       container.setAttribute('id', 'container');
@@ -240,20 +182,16 @@ export default class View {
     }
 
     this.renderTitle();
-
     this.renderForm(controller);
-
     this.renderTasks(taskList, controller);
 
     if (document.querySelector('.bottom-button-container') === null) {
-      // IF STATEMENT
       const bottomButtons = document.createElement('span');
       bottomButtons.classList.add('bottom-button-container');
       container.appendChild(bottomButtons);
     }
 
     this.renderResetButton(taskList, controller);
-
     this.renderRemoveCompletedButton(taskList, controller);
   }
 }

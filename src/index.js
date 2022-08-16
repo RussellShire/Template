@@ -7,8 +7,6 @@ function main() {
   const v = new View();
   const c = new Controller(m, v);
 
-  //c.sayHelloFromEveryone(); // prove to ourselves the wiring all works
-
   c.renderView();
 
   // TESTING

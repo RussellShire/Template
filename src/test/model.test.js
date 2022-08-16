@@ -1,6 +1,4 @@
 import Model from '../mvc/model.js';
-import { v4 as uuidv4 } from 'uuid';
-import { convertSkypackImportMapToLockfile } from 'snowpack/lib/cjs/util.js';
 
 describe('model', () => {
   it('makes a task', () => {
@@ -27,7 +25,7 @@ describe('model', () => {
 
     const newTask = await model.addNewTask('completed test');
 
-    await model.markTaskAsCompleted(newTask.uuid);
+    await model.toggleTaskCompleted(newTask.uuid);
 
     expect(model.uuidToTask.get(newTask.uuid).isCompleted).toBe(true);
   });
@@ -59,7 +57,7 @@ describe('model', () => {
     const notCompletedTask = await model.addNewTask('test1');
     const completedTask = await model.addNewTask('test2');
 
-    await model.markTaskAsCompleted(completedTask.uuid);
+    await model.toggleTaskCompleted(completedTask.uuid);
 
     await model.removeCompletedTasks();
 

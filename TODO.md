@@ -62,3 +62,4 @@ Can have helper render functions. Render title, render form, render list
 
 To do:
 Move error render into view to maintain
+Check font loading error
