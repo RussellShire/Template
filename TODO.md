@@ -10,8 +10,8 @@
 - [x] Define our view with psudocode
 - [x] Logically test our definitions by explaining them
 - [x] Implement our view
-- [ ] Perform user acceptence testing
-- [ ] Perform a retrospective
+- [x] Perform user acceptence testing
+- [x] Perform a retrospective
 
 A todo list is an ordered collection of tasks that need to be completed by a person
 
