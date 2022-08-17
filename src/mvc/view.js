@@ -1,5 +1,4 @@
 export default class View {
-  
   renderTitle() {
     if (document.querySelector('.title') === null) {
       const titleDiv = document.createElement('div');
@@ -47,7 +46,7 @@ export default class View {
       const saveTask = (ev) => {
         const newTaskDescription = formInput.value;
         form.reset();
-        ev.preventDefault(); 
+        ev.preventDefault();
         controller.newTaskRequested(newTaskDescription);
       };
 

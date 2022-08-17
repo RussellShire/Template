@@ -8,13 +8,13 @@ export default class ToDoList {
   async getAllTasks() {
     return Array.from(this.uuidToTask.values()).sort(
       (a, b) => a.createdTime > b.createdTime,
-    ); 
+    );
   }
 
   async addNewTask(description) {
-    const newTask = this.createNewTask(description); 
+    const newTask = this.createNewTask(description);
 
-    this.uuidToTask.set(newTask.uuid, newTask); 
+    this.uuidToTask.set(newTask.uuid, newTask);
 
     return newTask;
   }
