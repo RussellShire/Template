@@ -5,7 +5,7 @@ A ToDo App in Vanilla Javascript using MVC architecture, jest testing, dynamic r
 <!-- ###Hosted
 https://russellshire.github.io/react-pokedex/ -->
 
-###Project specifications
+### Project specifications
 
 - Users can add new tasks
 - Users can mark tasks as completed, and this is reflected in the UI
@@ -15,23 +15,23 @@ https://russellshire.github.io/react-pokedex/ -->
 
 ### Usage
 
-#Get the depdencies installed:
+# Get the depdencies installed:
 
 1. nvm use
 2. npm install
 
-#Get the app up and running on port 8080, assuming the depdencies are installed:
+# Get the app up and running on port 8080, assuming the depdencies are installed:
 
 1. cd /src
 2. npm run build
 3. npm run http
 
-#Get the tests up and running, assuming the depdencies are installed:
+# Get the tests up and running, assuming the depdencies are installed:
 
 1. cd /src
 2. npm run test
 
-#Get started with UUID:
+# Get started with UUID:
 
 ```javascript
 import { v4 as uuidv4 } from 'uuid';
